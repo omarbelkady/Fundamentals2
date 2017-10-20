@@ -1,0 +1,464 @@
+//Omar Belkady
+//Lab4
+//Prof: Dr Bernard Ku
+//This program will grade a students test. It will then tell the user whether or not the
+//student passed or failed the Test. The student must have earned 15 or more correct
+//answer for him to pass the exam
+
+
+
+
+
+#include <iostream>
+
+#include <string>
+
+#include <fstream>
+
+using namespace std;
+
+
+class TestGrader
+
+{
+
+private:
+
+
+
+    int wrong;
+
+    char answer[20];//right answers
+    
+    char p;
+ 
+
+public:
+
+    TestGrader();
+
+    void setKey(char[]);
+
+    void setStudent(char[]);
+
+    int grade(char[], char[]);
+    
+    int getGrade();
+
+};
+
+ 
+
+TestGrader::TestGrader()
+
+{}
+
+ 
+
+void TestGrader::setKey(char ans[])
+
+{
+
+    for (int count = 0; count <20; count++)
+    {
+
+       answer[count]=ans[count];
+    }
+
+}
+
+ 
+
+void TestGrader::setStudent(char student[])
+
+{
+
+    ifstream dataIn;
+
+    dataIn.open("student.txt");
+
+ 
+
+    for (int count = 0; count < 20; count++)
+
+        dataIn >> student[count];
+
+ 
+
+    dataIn.close();
+
+ 
+
+}
+
+int TestGrader::getGrade()
+{
+	char rightAnswers[20] = {'B', 'D', 'A', 'A', 'C', 'A', 'B', 'A', 'C', 'D', 'B', 'C', 'D', 'A', 'D', 'C', 'C', 'B', 'D', 'A'};//right answers
+	int sum = 0;
+	
+	for (int i = 0; i<20; i++)
+	{
+		if (answer[i] == rightAnswers[i])
+		{
+			sum++;
+			
+		}
+	}
+	return sum;
+	
+}
+
+int TestGrader::grade(char answers[], char student[])
+
+{
+
+    int sum = 0;
+
+ 
+
+    for (int count = 0; count < 20; count++)
+
+    {
+
+        if (answers[count] == student[count])
+
+        {
+
+            cout << endl;
+
+            cout << "Answer " << (count + 1) << " is right.\n";
+
+        }
+
+        else
+
+        {
+
+            sum += 1;
+
+        }
+
+    }
+
+     
+
+    return sum;
+
+}
+bool validateInput(char c)
+{
+	char key[4]={'A','B','C','D'};
+	for (int i=0; i<4; i++)
+	{
+		if (c == key[i]){
+			return true;
+			
+		}
+	}//Omar Belkady
+//Lab4
+//Prof: Dr Bernard Ku
+//This program will grade a students test. It will then tell the user whether or not the
+//student passed or failed the Test. The student must have earned 15 or more correct
+//answer for him to pass the exam
+
+
+
+
+
+#include <iostream>
+
+#include <string>
+
+#include <fstream>
+
+using namespace std;
+
+
+class TestGrader
+
+{
+
+private:
+
+
+
+    int wrong;
+
+    char answer[20];//right answers
+    
+    char p;
+ 
+
+public:
+
+    TestGrader();
+
+    void setKey(char[]);
+
+    void setStudent(char[]);
+
+    int grade(char[], char[]);
+    
+    int getGrade();
+
+};
+
+ 
+
+TestGrader::TestGrader()
+
+{}
+
+ 
+
+void TestGrader::setKey(char ans[])
+
+{
+
+    for (int count = 0; count <20; count++)
+    {
+
+       answer[count]=ans[count];
+    }
+
+}
+
+ 
+
+void TestGrader::setStudent(char student[])
+
+{
+
+    ifstream dataIn;
+
+    dataIn.open("student.txt");
+
+ 
+
+    for (int count = 0; count < 20; count++)
+
+        dataIn >> student[count];
+
+ 
+
+    dataIn.close();
+
+ 
+
+}
+
+int TestGrader::getGrade()
+{
+	char rightAnswers[20] = {'B', 'D', 'A', 'A', 'C', 'A', 'B', 'A', 'C', 'D', 'B', 'C', 'D', 'A', 'D', 'C', 'C', 'B', 'D', 'A'};//right answers
+	int sum = 0;
+	
+	for (int i = 0; i<20; i++)
+	{
+		if (answer[i] == rightAnswers[i])
+		{
+			sum++;
+			
+		}
+	}
+	return sum;
+	
+}
+
+int TestGrader::grade(char answers[], char student[])
+
+{
+
+    int sum = 0;
+
+ 
+
+    for (int count = 0; count < 20; count++)
+
+    {
+
+        if (answers[count] == student[count])
+
+        {
+
+            cout << endl;
+
+            cout << "Answer " << (count + 1) << " is right.\n";
+
+        }
+
+        else
+
+        {
+
+            sum += 1;
+
+        }
+
+    }
+
+     
+
+    return sum;
+
+}
+bool validateInput(char c)
+{
+	char key[4]={'A','B','C','D'};
+	for (int i=0; i<4; i++)
+	{
+		if (c == key[i]){
+			return true;
+			
+		}
+	}
+	return false;
+}	
+ 
+
+int main()
+
+{
+
+    TestGrader testGrader;
+
+    const int SIZE = 20;
+
+    int wrong;
+
+   
+
+    char student[SIZE];
+
+     
+
+    char answers[20];
+    for (int i = 0; i<20; i++)
+    {
+    	cout<<"enter the answer for Question "<<i+1<<":";
+		cin>> answers[i];	
+	
+	while(!validateInput(answers[i]))
+	{
+		cout<<"Please Enter either A or B or C or D ";
+		cin>> answers[i];
+	}
+	
+	}
+    
+    
+ 
+
+    testGrader.setKey(answers);
+    cout<<"Your grade is "<<testGrader.getGrade()<<"/20"<<endl;
+    cout<<"You got "<<testGrader.getGrade()<<" questions correct"<<endl;
+    cout<<"You got "<<20-testGrader.getGrade()<<" questions wrong"<<endl;
+    /*cout<<"Would you like to grade another exam?"<<endl;
+    cin>>p;
+    while (p = Y){
+        char answers[20];
+    for (int i = 0; i<20; i++)
+    {
+    	cout<<"enter the answer for Question "<<i+1<<":";
+		cin>> answers[i];	
+	
+	while(!validateInput(answers[i]))
+	{
+		cout<<"Please Enter either A or B or C or D ";
+		cin>> answers[i];
+	}
+    }
+    */
+    
+    if (testGrader.getGrade() >= 15){
+       cout<<"Congratulations You Passed"; 
+    }
+    
+    
+    else
+    {
+        cout<<"Sorry you failed";
+    }
+    
+
+    testGrader.setStudent(student);
+
+   
+    return 0;
+ 
+}
+
+	return false;
+}	
+ 
+
+int main()
+
+{
+
+    TestGrader testGrader;
+
+    const int SIZE = 20;
+
+    int wrong;
+
+   
+
+    char student[SIZE];
+
+     
+
+    char answers[20];
+    for (int i = 0; i<20; i++)
+    {
+    	cout<<"enter the answer for Question "<<i+1<<":";
+		cin>> answers[i];	
+	
+	while(!validateInput(answers[i]))
+	{
+		cout<<"Please Enter either A or B or C or D ";
+		cin>> answers[i];
+	}
+	
+	}
+    
+    
+ 
+
+    testGrader.setKey(answers);
+    cout<<"Your grade is "<<testGrader.getGrade()<<"/20"<<endl;
+    cout<<"You got "<<testGrader.getGrade()<<" questions correct"<<endl;
+    cout<<"You got "<<20-testGrader.getGrade()<<" questions wrong"<<endl;
+    /*cout<<"Would you like to grade another exam?"<<endl;
+    cin>>p;
+    while (p = Y){
+        char answers[20];
+    for (int i = 0; i<20; i++)
+    {
+    	cout<<"enter the answer for Question "<<i+1<<":";
+		cin>> answers[i];	
+	
+	while(!validateInput(answers[i]))
+	{
+		cout<<"Please Enter either A or B or C or D ";
+		cin>> answers[i];
+	}
+    }
+    */
+    
+    if (testGrader.getGrade() >= 15){
+       cout<<"Congratulations You Passed"; 
+    }
+    
+    
+    else
+    {
+        cout<<"Sorry you failed";
+    }
+    
+
+    testGrader.setStudent(student);
+
+   
+    return 0;
+ 
+}
