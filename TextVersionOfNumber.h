@@ -7,8 +7,8 @@ using namespace std;
 class TextVersionOfNumber
 {
 private:
-	double amount;
+	int amount;
 public:
 	string getTextVersionOfNumber();
-	void setAmount(double);
+	void setAmount(int);
 };
